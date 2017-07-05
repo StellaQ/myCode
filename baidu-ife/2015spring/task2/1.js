@@ -1,3 +1,4 @@
+// 1. 创建第一个页面交互
 function $(id) {
     return document.getElementById(id);
 }
