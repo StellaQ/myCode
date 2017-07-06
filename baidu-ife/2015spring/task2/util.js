@@ -130,7 +130,7 @@ function trim(str) {
 // 使用示例
 var str = '        hi!    ';
 str = trim(str);
-console.log(str);  //'hi!'
+// console.log(str);  //'hi!'
 
 // 实现一个遍历数组的方法，针对数组中每一个元素执行fn函数，并将数组索引和元素作为参数传递
 function each(arr, fn) {
@@ -171,7 +171,7 @@ var obj = {
         c2: 4
     }
 };
-console.log(getObjectLength(obj)); //3
+// console.log(getObjectLength(obj)); //3
 
 // 学习正则表达式，在util.js完成以下代码
 // 判断是否为邮箱地址
