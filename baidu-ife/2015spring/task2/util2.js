@@ -51,7 +51,7 @@ function removeClass(element, oldClassName) {
     };
     return element.className = strClassName;
 };
-var dom1 = document.getElementById('dom1');
+// var dom1 = document.getElementById('dom1');
 // addClass(dom1, '1233');
 // removeClass(dom1, '789');
 
@@ -67,8 +67,8 @@ function isSiblingNode(element, siblingNode) {
     };
 };
 
-var p1 = document.getElementById('p1');
-var p2 = document.getElementById('p2');
+// var p1 = document.getElementById('p1');
+// var p2 = document.getElementById('p2');
 // console.log(isSiblingNode(p1, p2));
 
 // 获取element相对于浏览器窗口的位置，返回一个对象{x, y}
@@ -348,8 +348,8 @@ $.delegate = function (selector, tag, event, listener) {
 // $.un('#dom1', 'click', listener1);
 // $.click('#dom1', listener1);
 
-$.delegate('#list', 'li', 'click', clickListener);
-$.click('#btn', renderList);
+// $.delegate('#list', 'li', 'click', clickListener);
+// $.click('#btn', renderList);
 
 
 
