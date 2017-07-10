@@ -226,9 +226,9 @@ function addEnterEvent(element, listener) {
 // addClickEvent(element, listener) -> $.click(element, listener);
 // addEnterEvent(element, listener) -> $.enter(element, listener);
 
-$.on = function (element, event, listener) {
-    addEvent(element, event, listener);
-};
+// $.on = function (element, event, listener) {
+//     addEvent(element, event, listener);
+// };
 $.un = function (element, event, listener) {
     removeEvent(element, event, listener);
 };
@@ -307,38 +307,50 @@ function renderList() {
 // 当然不会这么笨，接下来学习一下事件代理，然后实现下面新的方法：
 
 // 先简单一些
-function delegateEvent(element, tag, eventName, listener) {
+$.delegate = function (element, tag, eventName, listener) {
     addEvent(element, eventName, function (event) {
         var target = event.target || event.srcElement;
         if (target.tagName.toLowerCase() == tag.toLowerCase()) {
             listener.call(target, event);
         };
     });
-}
-$.delegate = delegateEvent;
+};
 
-$.delegate($('#list'), 'li', 'click', clickListener);
-$.click($("#btn"), renderList);
+// $.delegate($('#list'), 'li', 'click', clickListener);
+// $.click($("#btn"), renderList);
 
 // 估计有同学已经开始吐槽了，函数里面一堆$看着晕啊，
 // 那么接下来把我们的事件函数做如下封装改变：
 
-// $.on(selector, event, listener) {
-//     // your implement
-// }
+function listener1 () {
+    console.log('listener1');
+};
 
-// $.click(selector, listener) {
-//     // your implement
-// }
+$.on = function (selector, event, listener) {
+    addEvent($(selector), event, listener);
+};
+$.un = function (selector, event, listener) {
+    removeEvent($(selector), event, listener);
+};
+$.click = function (selector, listener) {
+    addClickEvent($(selector), listener);
+};
+$.delegate = function (selector, tag, event, listener) {
+    addEvent($(selector), event, function (event) {
+        var target = event.target || event.srcElement;
+        if (target.tagName.toLowerCase() == tag.toLowerCase()) {
+            listener.call(target, event);
+        };
+    });
+}
 
-// $.un(selector, event, listener) {
-//     // your implement
-// }
+// $.on('#dom1', 'click', listener1);
+// $.un('#dom1', 'click', listener1);
+// $.click('#dom1', listener1);
 
-// $.delegate(selector, tag, event, listener) {
-//     // your implement
-// }
+$.delegate('#list', 'li', 'click', clickListener);
+$.click('#btn', renderList);
 
-// 使用示例：
-// $.click("[data-log]", logListener);
-// $.delegate('#list', "li", "click", liClicker);
+
+
+
