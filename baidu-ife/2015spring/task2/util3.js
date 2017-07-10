@@ -4,7 +4,14 @@
 
 // 判断是否为IE浏览器，返回-1或者版本号
 function isIE() {
-}
+    var ua = navigator.userAgent.toLowerCase();
+    var ie = ua.match(/rv:([\d.]+)/) || ua.match(/msie([\d.]+)/) ;
+    if (ie) {
+        return ie[1];
+    } else {
+        return -1;
+    };
+};
 
 // 设置cookie
 function setCookie (cookieName, cookieValue, expiredays) {

@@ -229,15 +229,16 @@ function addEnterEvent(element, listener) {
 // $.on = function (element, event, listener) {
 //     addEvent(element, event, listener);
 // };
-$.un = function (element, event, listener) {
-    removeEvent(element, event, listener);
-};
-$.click = function (element, listener) {
-    addClickEvent(element, listener);
-};
-$.enter = function (element, listener) {
-    addEnterEvent(element, listener);
-}
+// $.un = function (element, event, listener) {
+//     removeEvent(element, event, listener);
+// };
+// $.click = function (element, listener) {
+//     addClickEvent(element, listener);
+// };
+// $.enter = function (element, listener) {
+//     addEnterEvent(element, listener);
+// }
+
 // $.on($('#dom1'), 'click', clickListener);
 // $.un($('#dom1'), 'click', clickListener);
 // $.click($('#dom1'), clickListener);
@@ -307,14 +308,14 @@ function renderList() {
 // 当然不会这么笨，接下来学习一下事件代理，然后实现下面新的方法：
 
 // 先简单一些
-$.delegate = function (element, tag, eventName, listener) {
-    addEvent(element, eventName, function (event) {
-        var target = event.target || event.srcElement;
-        if (target.tagName.toLowerCase() == tag.toLowerCase()) {
-            listener.call(target, event);
-        };
-    });
-};
+// $.delegate = function (element, tag, eventName, listener) {
+//     addEvent(element, eventName, function (event) {
+//         var target = event.target || event.srcElement;
+//         if (target.tagName.toLowerCase() == tag.toLowerCase()) {
+//             listener.call(target, event);
+//         };
+//     });
+// };
 
 // $.delegate($('#list'), 'li', 'click', clickListener);
 // $.click($("#btn"), renderList);
