@@ -65,18 +65,18 @@ function cloneObject(src) {
     return result;
 }
 // 测试用例
-var srcObj = {
-    a:1,
-    b: {
-        b1: ['hello', 'hi'],
-        b2: 'javascript'
-    }
-};
-var abObj = srcObj;
-var tarObj = cloneObject(srcObj);
+// var srcObj = {
+//     a:1,
+//     b: {
+//         b1: ['hello', 'hi'],
+//         b2: 'javascript'
+//     }
+// };
+// var abObj = srcObj;
+// var tarObj = cloneObject(srcObj);
 
-srcObj.a = 2;
-srcObj.b.b1[0] = 'hello';
+// srcObj.a = 2;
+// srcObj.b.b1[0] = 'hello';
 
 // console.log(abObj.a);
 // console.log(abObj.b.b1[0]);
@@ -128,8 +128,8 @@ function trim(str) {
 }
 
 // 使用示例
-var str = '        hi!    ';
-str = trim(str);
+// var str = '        hi!    ';
+// str = trim(str);
 // console.log(str);  //'hi!'
 
 // 实现一个遍历数组的方法，针对数组中每一个元素执行fn函数，并将数组索引和元素作为参数传递
@@ -163,14 +163,14 @@ function getObjectLength(obj) {
 }
 
 // 使用示例
-var obj = {
-    a: 1,
-    b: 2,
-    c: {
-        c1: 3,
-        c2: 4
-    }
-};
+// var obj = {
+//     a: 1,
+//     b: 2,
+//     c: {
+//         c1: 3,
+//         c2: 4
+//     }
+// };
 // console.log(getObjectLength(obj)); //3
 
 // 学习正则表达式，在util.js完成以下代码

@@ -289,12 +289,12 @@ function each(arr, fn) {
 // </ul>
 // <button id="btn">Change</button>
 
-function clickListener(event) {
-    console.log(event);
-}
-function renderList() {
-    $("#list").innerHTML = '<li>new item</li>';
-}
+// function clickListener(event) {
+//     console.log(event);
+// }
+// function renderList() {
+//     $("#list").innerHTML = '<li>new item</li>';
+// }
 // function init() {
 //     each($("#list").getElementsByTagName('li'), function(item, i) {
 //         $.click(item, clickListener);
@@ -323,9 +323,9 @@ function renderList() {
 // 估计有同学已经开始吐槽了，函数里面一堆$看着晕啊，
 // 那么接下来把我们的事件函数做如下封装改变：
 
-function listener1 () {
-    console.log('listener1');
-};
+// function listener1 () {
+//     console.log('listener1');
+// };
 
 $.on = function (selector, event, listener) {
     addEvent($(selector), event, listener);
