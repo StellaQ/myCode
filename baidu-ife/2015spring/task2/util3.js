@@ -15,15 +15,28 @@ function isIE() {
 
 // 设置cookie
 function setCookie (cookieName, cookieValue, expiredays) {
-}
+    var cookie = encodeURIComponent(cookieName) + '=' + encodeURIComponent(cookieValue);
+    if (expiredays instanceof Number) {
+        var exdate = new Date();
+        exdate.setDate(exdate.getDate() + expiredays);
+        cookie += '; expires=' + exdate.toGMTString();
+    }
+    document.cookie = cookie;
+};
 
 // 获取cookie值
 function getCookie (cookieName) {
-}
-
-//移除cookie
-function removeCookie(cookieName) {
-}
+    var cookie = {};
+    var arrCookie = document.cookie.split('; ');
+    for (var i = 0; i < arrCookie.length; i++) {
+        var index = arrCookie[i].indexOf('=');
+        var name = arrCookie[i].substr(0, index);
+        var value = arrCookie[i].substr(index+1);
+        value = decodeURIComponent(value);
+        cookie[name] = value;
+    };
+    return cookie.cookieName;
+};
 
 // 6. Ajax
 // 6.1 任务描述
