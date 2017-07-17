@@ -1,35 +1,43 @@
 window.onload = function () {
-    var leftDis = getStyle($('#imageList')).left;
-    var max = $('#imageList').getElementsByTagName('li').length;
-    var pace = parseInt(getStyle($('#imageList li')).width);
-    moveMent($('#imageList'), -600, 10, parseInt(getStyle($('#imageList')).left));
-    imageLoop(max);
+    // moveMent($('#imageList'), parseInt(getStyle($('#imageList')).left), true);
+    imageLoop(false);
+
+    $.on('.config [name=order]', 'click', listener1);
 };
-function imageLoop (max) {
-    var intervalId = null;
-    var loopCounter = 0;
-    var start = 0;
-    intervalId = setInterval(function(){loop()}, 2000);
+function listener1 () {
+    console.log(this.value);
+    // console.log('im here');
+    // clearInterval(intervalId);
+};
+var intervalId = null;
+function imageLoop (forward) {
+
+    intervalId = setInterval(function(){loop()}, 1500);
+
     function loop () {
-        loopCounter ++;
-        // console.log(loopCounter);
-        start = parseInt(getStyle($('#imageList')).left);
-        if (start == -2400) {
+
+        var start = parseInt(getStyle($('#imageList')).left);
+        if (start == -2400 && forward) {
             start = 0;
         };
-        // console.log(start);
-        moveMent($('#imageList'), -600, 10, start);
+        if (start == 0 && !forward) {
+            start = -2400;
+        };
+
+        moveMent($('#imageList'), start, forward);
     };
 };
-function moveMent (element, pace, counter, start) {
-    var speed = pace/counter;
+function moveMent (element, start, forward) {
+    var pace = parseInt(getStyle($('#imageList li')).width),
+        counter = 10,
+        speed = forward ? (-pace/counter) : (pace/counter);
+
     var intervalId = null;
     intervalId = setInterval(function(){move()}, 100);
+
     function move () {
         counter--;
-        // console.log(counter);
         start += speed;
-        // console.log(start);
         element.style.left = start + 'px';
         if (counter == 0) {
             clearInterval(intervalId);
