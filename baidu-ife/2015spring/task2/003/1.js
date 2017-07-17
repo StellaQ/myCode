@@ -1,20 +1,37 @@
 window.onload = function () {
     var leftDis = getStyle($('#imageList')).left;
-    var maxNum = $('#imageList').getElementsByTagName('li').length;
-    console.log(maxNum);
-    // setInterval(function(){moveMent($('#imageList'), -600, 10, parseInt( getStyle($('#imageList')).left));}, 2000);
+    var max = $('#imageList').getElementsByTagName('li').length;
+    var pace = parseInt(getStyle($('#imageList li')).width);
+    moveMent($('#imageList'), -600, 10, parseInt(getStyle($('#imageList')).left));
+    imageLoop(max);
 };
-function moveMent (element, pace, seconds, start) {
-    var speed = pace/seconds;
+function imageLoop (max) {
+    var intervalId = null;
+    var loopCounter = 0;
+    var start = 0;
+    intervalId = setInterval(function(){loop()}, 2000);
+    function loop () {
+        loopCounter ++;
+        // console.log(loopCounter);
+        start = parseInt(getStyle($('#imageList')).left);
+        if (start == -2400) {
+            start = 0;
+        };
+        // console.log(start);
+        moveMent($('#imageList'), -600, 10, start);
+    };
+};
+function moveMent (element, pace, counter, start) {
+    var speed = pace/counter;
     var intervalId = null;
     intervalId = setInterval(function(){move()}, 100);
     function move () {
-        seconds--;
-        // console.log(seconds);
+        counter--;
+        // console.log(counter);
         start += speed;
-        console.log(start);
+        // console.log(start);
         element.style.left = start + 'px';
-        if (seconds == 0) {
+        if (counter == 0) {
             clearInterval(intervalId);
         };
     };
