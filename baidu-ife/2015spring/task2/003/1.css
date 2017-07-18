@@ -62,6 +62,9 @@ li{
     background-color: green;
     cursor: pointer;
 }
+#dotList .whiteDot{
+    background-color: #fff;
+}
 #dotList li:hover{
     background-color: #fff;
 }

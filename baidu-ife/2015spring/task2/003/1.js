@@ -4,21 +4,19 @@ var intervalId = null;
 // 页面进入后开始间歇调用
 window.addEventListener('focus', function(){
     // 初始化默认设置
-    intervalId = setInterval(function(){ imageLoop(true, true) }, 1500);
+    intervalId = setInterval(function(){ imageLoop(false, false) }, 1500);
 }, false);
 // 页面离开时停止间歇调用,解决离开页面一段时间后再返回页面动画出错的bug
 window.addEventListener('blur', function(){
     clearInterval(intervalId);
 }, false);
 
-
 window.onload = function () {
-    $.on('.config [name=order]', 'change', listener1);
+    $.on('.config #posOrder', 'change', listener1);
+    $.on('.config #revOrder', 'change', listener1);
 };
 function listener1 () {
-    console.log('good');
     console.log(this.value);
-
 };
 
 function imageLoop (forward, loop) {
@@ -46,7 +44,39 @@ function imageLoop (forward, loop) {
         forward = !forward;
     };
 
+    tabDot(start, forward, loop, num);
     moveMent($('#imageList'), start, pace, forward);
+
+};
+function tabDot (start, forward, loop, num) {
+    var index,
+        pace = parseInt(getStyle($('#imageList li')).width);
+
+    if (start == 0) {
+        index = 0 + 1;
+    } else {
+        index = (-start/pace + 1) % (num - 1);
+    };
+    console.log(index); // 1,0,3,2,1,0,3,2,1,0
+                        // 0,3,2,1,0,3
+                        // 3,2,1,0,
+
+    if (!forward && loop) {
+        index = (index + 2) % (num - 1);
+    };
+
+    if (!forward && !loop) {
+        console.log('ddd');
+        index = (index + 2) % (num - 1);
+    };
+    console.log(index);
+    console.log('----');
+
+    var arrDot = $('#dotList').getElementsByTagName('li');
+    for (var i = 0; i < arrDot.length; i++) {
+        removeClass(arrDot[i], 'whiteDot');
+    };
+    addClass(arrDot[index], 'whiteDot');
 
 };
 function moveMent (element, start, pace, forward) {
