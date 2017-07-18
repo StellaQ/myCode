@@ -102,7 +102,12 @@ function $(selector, parent) {
         switch (selector.substr(0,1)) {
             case '#':  // id
                 // console.log('id');
-                obj = parent.getElementById(selector.substr(1));
+                obj = document.getElementById(selector.substr(1));
+                // Unlike some other similar methods,
+                // getElementById is only available as a method of the global document object,
+                // and not available as a method on all element objects in the DOM.
+                // Because ID values must be unique throughout the entire document,
+                // there is no need for "local" versions of the function.
                 break;
             case '.':  // class
                 // console.log('class');
