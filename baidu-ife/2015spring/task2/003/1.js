@@ -73,7 +73,15 @@ var arrDot = $('#dotList').getElementsByTagName('li');
 for (var i = 0; i < arrDot.length; i++) {
     (function(i){
         arrDot[i].onclick = function () {
-            console.log(i);
+            // 此处交互有bug
+            // console.log(intervalId);
+            tabDot(i);
+            clearInterval(intervalId);
+            var pace = parseInt(getStyle($('#imageList li')).width),
+                start = -pace*i;
+            $('#imageList').style.left = start + 'px';
+            intervalId = setInterval(function(){ imageLoop(config.forward, config.loop) }, config.time);
+            // console.log(intervalId);
         }
     })(i);
 };
