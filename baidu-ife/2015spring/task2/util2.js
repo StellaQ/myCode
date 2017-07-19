@@ -50,7 +50,7 @@ function removeClass(element, oldClassName) {
         };
     };
     return element.className = strClassName;
-};
+}
 // var dom1 = document.getElementById('dom1');
 // addClass(dom1, '1233');
 // removeClass(dom1, '789');
@@ -65,7 +65,7 @@ function isSiblingNode(element, siblingNode) {
     } else {
         return false;
     };
-};
+}
 
 // var p1 = document.getElementById('p1');
 // var p2 = document.getElementById('p2');
@@ -189,7 +189,7 @@ function addEvent(element, event, listener) {
     } else {
         element['on'+event] = listener;
     };
-};
+}
 // function clickListener(event) {
 //     console.log('dddd');
 // };
@@ -204,7 +204,7 @@ function removeEvent(element, event, listener) {
     } else {
         element['on'+type] = null;
     };
-};
+}
 // removeEvent($('#dom1'), 'click', clickListener);
 
 // 接下来我们实现一些方便的事件方法
@@ -219,7 +219,7 @@ function addEnterEvent(element, listener) {
             listener();
         };
     });
-};
+}
 // function enterListener () {
 //     console.log('999');
 // };
@@ -276,7 +276,7 @@ function each(arr, fn) {
     for (var i = 0; i < arr.length; i++) {
         fn(arr[i], i)
     };
-};
+}
 // function clickListener(event) {
 //     console.log(event);
 // };
@@ -334,13 +334,13 @@ function each(arr, fn) {
 
 $.on = function (selector, event, listener) {
     addEvent($(selector), event, listener);
-};
+}
 $.un = function (selector, event, listener) {
     removeEvent($(selector), event, listener);
-};
+}
 $.click = function (selector, listener) {
     addClickEvent($(selector), listener);
-};
+}
 $.delegate = function (selector, tag, event, listener) {
     addEvent($(selector), event, function (event) {
         var target = event.target || event.srcElement;

@@ -11,7 +11,7 @@ function isIE() {
     } else {
         return -1;
     };
-};
+}
 
 // 设置cookie
 function setCookie (cookieName, cookieValue, expiredays) {
@@ -22,7 +22,7 @@ function setCookie (cookieName, cookieValue, expiredays) {
         cookie += '; expires=' + exdate.toGMTString();
     }
     document.cookie = cookie;
-};
+}
 
 // 获取cookie值
 function getCookie (cookieName) {
@@ -36,7 +36,7 @@ function getCookie (cookieName) {
         cookie[name] = value;
     };
     return cookie.cookieName;
-};
+}
 
 // 6. Ajax
 // 6.1 任务描述

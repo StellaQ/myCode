@@ -1,0 +1,18 @@
+html,body,body *{
+    padding: 0;
+    margin: 0;
+}
+li{
+    list-style: none;
+}
+
+.clearfix{
+    zoom: 1;
+}
+.clearfix:before,.clearfix:after{
+    content: '';
+    display: table;
+}
+.clearfix:after{
+    clear: both;
+}
