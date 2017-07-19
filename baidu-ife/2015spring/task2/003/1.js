@@ -1,10 +1,15 @@
 
 var intervalId = null;
+var config = {
+    forward: true,
+    loop: true,
+    time: 1500
+};
 
 // 页面进入后开始间歇调用
 window.addEventListener('focus', function(){
     // 初始化默认设置
-    intervalId = setInterval(function(){ imageLoop(true, true) }, 1500);
+    intervalId = setInterval(function(){ imageLoop(config.forward, config.loop) }, config.time);
 }, false);
 // 页面离开时停止间歇调用,解决离开页面一段时间后再返回页面动画出错的bug
 window.addEventListener('blur', function(){
@@ -14,9 +19,47 @@ window.addEventListener('blur', function(){
 window.onload = function () {
     $.on('.config #posOrder', 'change', listener1);
     $.on('.config #revOrder', 'change', listener1);
+
+    $.on('.config #yesloop', 'change', listener2);
+    $.on('.config #notloop', 'change', listener2);
+
+    $.on('.config button', 'click', listener3);
+
+    $.delegate('#dotList', 'li', 'click', listener4);
 };
 function listener1 () {
-    console.log(this.value);
+    clearInterval(intervalId);
+    config.forward = !config.forward;
+    intervalId = setInterval(function(){  imageLoop(config.forward, config.loop) }, config.time);
+};
+function listener2 () {
+    clearInterval(intervalId);
+    config.loop = !config.loop;
+    intervalId = setInterval(function(){  imageLoop(config.forward, config.loop) }, config.time);
+};
+function listener3 () {
+    var str = $('.config [name=lasttime]').value;
+    if (str == '') {
+        console.log('cant be null string');
+        return;
+    };
+    var num = parseInt(str);
+    if (Object.prototype.toString.call(num) == '[object Number]') {
+        if (num < 1500) {
+            console.log('num need to over 1500 ms');
+            return;
+        };
+        config.time = num;
+        clearInterval(intervalId);
+        intervalId = setInterval(function(){ imageLoop(config.forward, config.loop) }, config.time);
+    };
+};
+function listener4 () {
+    var arrDot = $('#dotList').getElementsByTagName('li');
+    for (var i = 0; i < arrDot.length; i++) {
+        removeClass(arrDot[i], 'whiteDot');
+    };
+    addClass(this, 'whiteDot');
 };
 
 function imageLoop (forward, loop) {
@@ -50,6 +93,22 @@ function imageLoop (forward, loop) {
     tabDot(index);
     moveMent($('#imageList'), start, pace, direct);
 
+};
+function moveMent (element, start, pace, direct) {
+    var counter = 10,                                          // 每一帧切换时移动次数
+        speed = direct ? (-pace/counter) : (pace/counter);    // 算出正负速率
+
+    var intervalId = null;
+    intervalId = setInterval(function(){ move() }, 100);
+
+    function move () {
+        counter--;
+        start += speed;
+        element.style.left = start + 'px';
+        if (counter == 0) {
+            clearInterval(intervalId);
+        };
+    };
 };
 function getDotIndex (start, forward, loop, num) {
     var index,
@@ -89,22 +148,6 @@ function tabDot (index) {
         removeClass(arrDot[i], 'whiteDot');
     };
     addClass(arrDot[index], 'whiteDot');
-};
-function moveMent (element, start, pace, direct) {
-    var counter = 10,                                          // 每一帧切换时移动次数
-        speed = direct ? (-pace/counter) : (pace/counter);    // 算出正负速率
-
-    var intervalId = null;
-    intervalId = setInterval(function(){ move() }, 100);
-
-    function move () {
-        counter--;
-        start += speed;
-        element.style.left = start + 'px';
-        if (counter == 0) {
-            clearInterval(intervalId);
-        };
-    };
 };
 function getStyle (element) {
     return document.defaultView.getComputedStyle ?
