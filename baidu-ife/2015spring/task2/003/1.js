@@ -25,18 +25,19 @@ window.onload = function () {
 
     $.on('.config button', 'click', listener3);
 
-    $.delegate('#dotList', 'li', 'click', listener4);
+    // $.delegate('#dotList', 'li', 'click', listener4);
+    // 如何在事件委托下查找到元素索引index值？？
 };
 function listener1 () {
     clearInterval(intervalId);
     config.forward = !config.forward;
     intervalId = setInterval(function(){  imageLoop(config.forward, config.loop) }, config.time);
-};
+}
 function listener2 () {
     clearInterval(intervalId);
     config.loop = !config.loop;
     intervalId = setInterval(function(){  imageLoop(config.forward, config.loop) }, config.time);
-};
+}
 function listener3 () {
     var str = $('.config [name=lasttime]').value;
     if (str == '') {
@@ -53,15 +54,29 @@ function listener3 () {
         clearInterval(intervalId);
         intervalId = setInterval(function(){ imageLoop(config.forward, config.loop) }, config.time);
     };
+}
+// function getDotIndex () {
+//     var arrDot = $('#dotList').getElementsByTagName('li');
+//     for (var i = 0; i < arrDot.length; i++) {
+//         (function(i){
+//             arrDot[i].onclick = function () {
+//                 console.log(i);
+//             }
+//         })(i)
+//     };
+// }
+// function listener4 () {
+//     var a = getDotIndex();
+//     console.log(a);
+// }
+var arrDot = $('#dotList').getElementsByTagName('li');
+for (var i = 0; i < arrDot.length; i++) {
+    (function(i){
+        arrDot[i].onclick = function () {
+            console.log(i);
+        }
+    })(i);
 };
-function listener4 () {
-    var arrDot = $('#dotList').getElementsByTagName('li');
-    for (var i = 0; i < arrDot.length; i++) {
-        removeClass(arrDot[i], 'whiteDot');
-    };
-    addClass(this, 'whiteDot');
-};
-
 function imageLoop (forward, loop) {
 // forward true: 往左滑图片向前 false: 往右滑图片向后
 // loop true: 图片从最后一张过渡到第一张循环 false: 图片由最后一张快速到第一张不循环
@@ -93,7 +108,7 @@ function imageLoop (forward, loop) {
     tabDot(index);
     moveMent($('#imageList'), start, pace, direct);
 
-};
+}
 function moveMent (element, start, pace, direct) {
     var counter = 10,                                          // 每一帧切换时移动次数
         speed = direct ? (-pace/counter) : (pace/counter);    // 算出正负速率
@@ -109,7 +124,7 @@ function moveMent (element, start, pace, direct) {
             clearInterval(intervalId);
         };
     };
-};
+}
 function getDotIndex (start, forward, loop, num) {
     var index,
         pace = parseInt(getStyle($('#imageList li')).width);
@@ -141,17 +156,17 @@ function getDotIndex (start, forward, loop, num) {
     // false true 3 2 1 0
 
     return index;
-};
+}
 function tabDot (index) {
     var arrDot = $('#dotList').getElementsByTagName('li');
     for (var i = 0; i < arrDot.length; i++) {
         removeClass(arrDot[i], 'whiteDot');
     };
     addClass(arrDot[index], 'whiteDot');
-};
+}
 function getStyle (element) {
     return document.defaultView.getComputedStyle ?
     document.defaultView.getComputedStyle(element, null) :
     element.currentStyle;
-};
+}
 
