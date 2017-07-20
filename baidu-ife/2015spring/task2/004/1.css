@@ -35,6 +35,10 @@ li{
 .result li{
     padding: 5px;
 }
+.result .active{
+    color: #fff;
+    background-color: grey;
+}
 .result li:hover{
     color: #fff;
     background-color: grey;
