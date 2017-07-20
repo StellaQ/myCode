@@ -16,3 +16,25 @@ li{
 .clearfix:after{
     clear: both;
 }
+
+.container{
+    width: 600px;
+    margin: 20px auto;
+}
+.container input{
+    height: 30px;
+}
+.container input:focus{
+    outline: unset;
+}
+.result{
+    width: 150px;
+    border: 1px solid #666;
+}
+.result li{
+    padding: 5px;
+}
+.result li:hover{
+    color: #fff;
+    background-color: grey;
+}

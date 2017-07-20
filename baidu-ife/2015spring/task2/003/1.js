@@ -75,6 +75,8 @@ for (var i = 0; i < arrDot.length; i++) {
         arrDot[i].onclick = function () {
             // 此处交互有bug
             // console.log(intervalId);
+            // https://github.com/hushicai/ife-task0002/blob/master/src/Slider.js
+            // 待研究
             tabDot(i);
             clearInterval(intervalId);
             var pace = parseInt(getStyle($('#imageList li')).width),

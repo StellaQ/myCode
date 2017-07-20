@@ -48,6 +48,7 @@ function ajax(url, options) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             options.onsuccess(xhr.responseText, xhr);
+        }
         else {
             options.onfail(xhr.responseText, xhr);
         };
