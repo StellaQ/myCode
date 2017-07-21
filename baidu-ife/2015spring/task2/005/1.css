@@ -1,0 +1,39 @@
+body, body *{
+    padding: 0;
+    margin: 0;
+}
+.clarfix{
+    zoom: 1;
+}
+.clearfix:before,
+.clearfix:after{
+    content: '';
+    display: table;
+}
+.clearfix:after{
+    clear: both;
+}
+
+.container{
+    width: 300px;
+    margin: 20px auto;
+}
+li{
+    list-style: none;
+}
+ul{
+    float: left;
+    width: 100px;
+    height: 200px;
+    border: 1px solid #000;
+    margin-right: 20px;
+}
+li{
+    height: 20px;
+    border-bottom: 1px solid #000;
+    background-color: red;
+}
+
+
+
+
