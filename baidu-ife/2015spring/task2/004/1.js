@@ -16,11 +16,12 @@ function listener1 (ev) {
             if (str == '') { return }
             searchText(str);
         } else {
+            if ( indexLi < 0 ) {return};
             $('[name=search]').value = $('.result').getElementsByTagName('li')[indexLi].innerHTML;
             $('.result').style.display = 'none';
+            indexLi = -1;
         };
-    };
-    if (charCode == 40) {  // down arrow
+    } else if (charCode == 40) {  // down arrow
         indexLi++;
         if (indexLi > 3) {
             indexLi = 3;
