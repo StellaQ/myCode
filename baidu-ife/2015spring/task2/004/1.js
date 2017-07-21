@@ -1,5 +1,5 @@
 var searchResult = ['djfjf', 'ffrrf', 'frferer', 'frfrfrfr'];
-var i = -1;
+var indexLi = -1;
 
 window.onload = function () {
     $.on('[name=search]', 'keydown', listener1);
@@ -7,40 +7,45 @@ window.onload = function () {
 };
 function listener1 (ev) {
     var charCode = ev.keyCode;
-    // console.log(charCode);
     if (!(charCode == 40 || charCode == 38 || charCode == 13)) {
-        // console.log('not target keyCode');
         return;
     };
-    if (charCode == 13) {  //13 == enter
-        // console.log($('.result').style.display);
+    if (charCode == 13) {  // enter
         if ($('.result').style.display !== 'block') {
             var str = $('[name=search]').value;
             if (str == '') { return }
             searchText(str);
         } else {
-            console.log(i);
-            $('[name=search]').value = $('.result').getElementsByTagName('li')[i].innerHTML;
+            $('[name=search]').value = $('.result').getElementsByTagName('li')[indexLi].innerHTML;
             $('.result').style.display = 'none';
-        }
-
-    };
-    if (charCode == 40) {
-        i++;
-        if (i > 3) {
-            i = 3;
         };
-        // console.log(i);
-        tabLi(i);
-    } else if (charCode == 38) {
-        i--;
-        if (i < 0) {
-            i = 0;
-        };
-        // console.log(i);
-        tabLi(i);
     };
-    // console.log();
+    if (charCode == 40) {  // down arrow
+        indexLi++;
+        if (indexLi > 3) {
+            indexLi = 3;
+        };
+        tabLi(indexLi);
+    } else if (charCode == 38) {  // up arrow
+        indexLi--;
+        if (indexLi < 0) {
+            indexLi = 0;
+        };
+        tabLi(indexLi);
+    };
+}
+function listener2 () {
+    $('[name=search]').value = this.innerHTML;
+    $('.result').style.display = 'none';
+}
+function searchText (str) {
+    // ajax need to add...
+    var strResult = '';
+    for (var i = 0; i < searchResult.length; i++) {
+        strResult += '<li>' + searchResult[i] + '</li>';
+    };
+    $('.result').innerHTML = strResult;
+    $('.result').style.display = 'block';
 }
 function tabLi (index) {
 
@@ -49,17 +54,4 @@ function tabLi (index) {
         removeClass(arrLi[i], 'active');
     };
     addClass(arrLi[index], 'active');
-}
-function searchText (str) {
-    // ajax
-    var strResult = '';
-    for (var i = 0; i < searchResult.length; i++) {
-        strResult += '<li>' + searchResult[i] + '</li>';
-    };
-    $('.result').innerHTML = strResult;
-    $('.result').style.display = 'block';
-}
-function listener2 () {
-    $('[name=search]').value = this.innerHTML;
-    $('.result').style.display = 'none';
 }
