@@ -16,19 +16,19 @@ body,body * {
 
 header{
     width: 100%;
-    height: 100px;
+    height: 80px;
     position: fixed;
     left: 0;
     top: 0;
-    background-color: grey;
+    background-color: #ddd;
     z-index: 20;
 }
 .bar{
     width: 100%;
-    height: 80px;
+    height: 60px;
     position: fixed;
     left: 200px;
-    top: 100px;
+    top: 80px;
     background-color: yellow;
 }
 aside{
@@ -36,27 +36,31 @@ aside{
     width: 100px;
     height: 100%;
     padding-top: 100px;
+    border-right: 1px solid #ddd;
     position: fixed;
     top: 0;
 }
 .list{
     left: 0;
-    background-color: blue;
+    background-color: #eee;
 }
 .category{
     left: 100px;
-    background-color: red;
+    background-color: #eee;
 }
 .container{
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    padding-top: 180px;
+    padding-top: 140px;
     padding-left: 200px;
 }
 
-header{
-
+header p{
+    height: 100%;
+    color: #999;
+    font-size: 20px;
+    line-height: 80px;
 }
 
 
