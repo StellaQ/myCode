@@ -2,6 +2,9 @@ body,body * {
     padding: 0;
     margin: 0;
 }
+li{
+    list-style: none;
+}
 
 .clearfix{
     zoom: 1;
@@ -10,8 +13,15 @@ body,body * {
     content: '';
     display: table;
 }
-.clear:after{
+.clearfix:after{
     clear: both;
+}
+
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
 }
 
 header{
@@ -23,17 +33,8 @@ header{
     background-color: #ddd;
     z-index: 20;
 }
-.bar{
-    width: 100%;
-    height: 60px;
-    position: fixed;
-    left: 200px;
-    top: 80px;
-    background-color: yellow;
-}
 aside{
     box-sizing: border-box;
-    width: 100px;
     height: 100%;
     padding-top: 100px;
     border-right: 1px solid #ddd;
@@ -41,30 +42,69 @@ aside{
     top: 0;
 }
 .list{
+    width: 160px;
     left: 0;
     background-color: #eee;
 }
-.category{
-    left: 100px;
+.progress{
+    width: 140px;
+    left: 160px;
     background-color: #eee;
 }
-.container{
+.bar{
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    left: 300px;
+    top: 80px;
+    background-color: yellow;
+}
+.content{
     box-sizing: border-box;
     width: 100%;
     height: 100%;
     padding-top: 140px;
-    padding-left: 200px;
+    padding-left: 300px;
 }
 
 header p{
-    height: 100%;
+    padding-left: 10px;
     color: #999;
-    font-size: 20px;
     line-height: 80px;
 }
+.list-container{
+    padding: 5px;
+}
+.list-container h4{
+    margin: 5px 0;
+}
+.list-container h5{
+    margin: 5px 0;
+}
 
+.list-title{
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+.list-title>img{
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+}
+.list-title>p{
+    width: 134px;
+}
+.list-title span{
+    margin-left: 5px;
+}
+.list-title>ul{
+    padding-left: 15px;
+}
 
-
+.list-detail img{
+    width: 10px;
+    height: 10px;
+}
 
 
 
