@@ -1,3 +1,4 @@
+/*normalize*/
 body,body * {
     padding: 0;
     margin: 0;
@@ -23,7 +24,10 @@ li{
 .fr{
     float: right;
 }
-
+.mr5{
+    margin-right: 5px;
+}
+/*布局*/
 header{
     width: 100%;
     height: 80px;
@@ -36,7 +40,7 @@ header{
 aside{
     box-sizing: border-box;
     height: 100%;
-    padding-top: 100px;
+    padding-top: 80px;
     border-right: 1px solid #ddd;
     position: fixed;
     top: 0;
@@ -66,45 +70,66 @@ aside{
     padding-top: 140px;
     padding-left: 300px;
 }
-
+/*css*/
 header p{
     padding-left: 10px;
     color: #999;
     line-height: 80px;
 }
+
 .list-container{
     padding: 5px;
 }
 .list-container h4{
     margin: 5px 0;
 }
-.list-container h5{
+.list-container h5,
+.list-container h6{
     margin: 5px 0;
 }
+.list-container h6{
+    /*cursor: pointer;*/
+}
 
-.list-title{
-    cursor: pointer;
-    margin-bottom: 5px;
-}
-.list-title>img{
+.icon{
     width: 10px;
-    height: 10px;
-    margin-right: 5px;
+    height: 22px;
+    background-size: 10px 10px;
+    background-repeat: no-repeat;
+    background-position: 0 50%;
 }
-.list-title>p{
-    width: 134px;
+.icon-star{
+    background-image: url('../../asset/x22.png');
 }
-.list-title span{
+.icon-book{
+    background-image: url('../../asset/x1.jpg');
+}
+.icon-delete{
+    background-image: url('../../asset/x33.jpeg');
+}
+
+.list-container h6 p{
+    width: 124px;
+    height: 22px;
+    line-height: 22px;
+}
+.list-container h6 a{
+    display: none;
+}
+.list-container h6:hover a{
+    display: block;
+}
+
+.list-task{
+    margin-left: 15px;
+    font-size: 14px;
+}
+
+.list-container h6 p span,
+.list-task p span{
     margin-left: 5px;
 }
-.list-title>ul{
-    padding-left: 15px;
-}
 
-.list-detail img{
-    width: 10px;
-    height: 10px;
-}
 
 
 
