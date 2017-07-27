@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <style type="text/css">
+        li{
+            list-style: none;
+        }
+        .clearfix{
+            zoom: 1;
+        }
+        .clearfix:before,
+        .clearfix:after{
+            display: table;
+            content: '';
+        }
+        .clearfix:after{
+            clear: both;
+        }
+        .fl{
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<ul class="clearfix">
+    <li class="fl">
+        <img src="../../codeexample/ch02/begin/images/jump1.jpg">
+        <!-- <p>your discount is <span>5</span>%</p> -->
+    </li>
+    <li class="fl">
+        <img src="../../codeexample/ch02/begin/images/jump2.jpg">
+        <!-- <p>your discount is <span>5</span>%</p> -->
+    </li>
+    <li class="fl">
+        <img src="../../codeexample/ch02/begin/images/jump3.jpg">
+        <!-- <p>your discount is <span>5</span>%</p> -->
+    </li>
+    <li class="fl">
+        <img src="../../codeexample/ch02/begin/images/jump4.jpg">
+        <!-- <p>your discount is <span>5</span>%</p> -->
+    </li>
+</ul>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script>
+$(document).ready(function(){
+    $('li').click(function(){
+        $('li p').remove();
+        var str = '<p>your discount is <span>'+ getRandom(5, 10) +'</span>%</p>';
+        $(this).append(str);
+    });
+});
+function getRandom (start, end) {
+    return Math.floor(Math.random()*(end - start)) + start;
+};
+</script>
+</body>
+</html>
