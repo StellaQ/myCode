@@ -257,6 +257,76 @@ header p{
     background-color: peachpuff;
 }
 
+.alert-panel{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 200px;
+    min-height: 100px;
+    border-radius: 10px;
+    background-color: #92c5b0;
+    z-index: 100;
+}
+.animation-show{
+    animation-name: showUp;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+}
+@keyframes showUp{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.alert-header{
+    height: 30px;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    color: #fff;
+    line-height: 30px;
+    text-align: center;
+    font-weight: bold;
+}
+.alert-body{
+    padding: 10px;
+    color: #fff;
+}
+.alert-footer{
+    height: 30px;
+    color: #fff;
+    text-align: center;
+}
+.button-cancel,
+.button-check{
+    display: inline-block;
+    padding: 0 4px;
+    margin: 5px;
+    font-size: 12px;
+    line-height: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.button-cancel{
+    background-color: #615a5a;
+}
+.button-check{
+    background-color: #1c53b7;
+}
+
+.icon-withdraw{
+    background-image: url('../../asset/x111.jpeg');
+}
+.icon4{
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    width: 20px;
+    height: 20px;
+    background-size: 100% 100%;
+}
 
 
 
