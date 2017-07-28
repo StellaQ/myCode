@@ -68,7 +68,7 @@ aside{
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    padding-top: 151px;
+    padding-top: 152px;
     padding-left: 300px;
 }
 /*css*/
@@ -129,6 +129,9 @@ header p{
     background-size: 15px 15px;
 }
 
+.list-container h6 div{
+    height: 22px;
+}
 .list-container h6 p{
     width: 124px;
     height: 22px;
@@ -137,13 +140,32 @@ header p{
 .list-container h6 a{
     display: none;
 }
-.list-container h6:hover a{
+.list-container h6 div:hover a{
     display: block;
 }
+/*.list-container h6:hover a{
+    display: block;
+}*/
 
 .list-task{
-    margin-left: 15px;
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: 15px;
     font-size: 14px;
+    font-weight: normal;
+    display: none;
+}
+.list-active{
+    display: block;
+}
+.list-task li p{
+    width: 109px;
+}
+.list-task li a{
+    display: none;
+}
+.list-task li:hover a{
+    display: block;
 }
 
 .list-container h6 p span,
@@ -210,8 +232,7 @@ header p{
 }
 
 .bar{
-    height: 151px;
-    border-bottom: 1px solid #ddd;
+    height: 152px;
 }
 .edit-panel{
     padding: 10px;
@@ -223,6 +244,7 @@ header p{
 .task-date{
     height: 30px;
     padding: 0 10px;
+    border-bottom: 1px solid #ddd;
     background-color: #f5f5c9;
     font-size: 12px;
     line-height: 30px;
@@ -231,6 +253,9 @@ header p{
     padding: 10px;
 }
 
+.list-container .task-active{
+    background-color: peachpuff;
+}
 
 
 
