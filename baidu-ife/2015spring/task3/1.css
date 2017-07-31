@@ -267,12 +267,20 @@ header p{
     border-radius: 10px;
     background-color: #92c5b0;
     z-index: 100;
+    display: none;
 }
 .animation-show{
+    display: block;
     animation-name: showUp;
     animation-duration: 1s;
     animation-timing-function: ease;
 }
+/*.animation-hide{
+    display: none;
+    animation-name: hideUp;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+}*/
 @keyframes showUp{
     0%{
         opacity: 0;
@@ -281,6 +289,14 @@ header p{
         opacity: 1;
     }
 }
+/*@keyframes hideUp{
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}*/
 .alert-header{
     height: 30px;
     border-bottom: 1px solid #ddd;
