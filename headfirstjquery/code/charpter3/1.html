@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <style type="text/css">
+        li{
+            list-style: none;
+        }
+        .clearfix{
+            zoom: 1;
+        }
+        .clearfix:before,
+        .clearfix:after{
+            display: table;
+            content: '';
+        }
+        .clearfix:after{
+            clear: both;
+        }
+        .fl{
+            float: left;
+        }
+
+        .on_hover{
+            border: 1px solid #00f;
+        }
+        .discount{
+            border: 1px solid #0f0;
+        }
+        .no_discount{
+            border: 1px solid #f00;
+        }
+    </style>
+</head>
+<body>
+<ul class="clearfix">
+    <li class="fl">
+        <img src="../../codeexample/ch02/begin/images/jump1.jpg">
+        <!-- <p>your discount is <span>5</span>%</p> -->
+    </li>
+    <li class="fl">
+        <img src="../../codeexample/ch02/begin/images/jump2.jpg">
+        <!-- <p>your discount is <span>5</span>%</p> -->
+    </li>
+    <li class="fl">
+        <img src="../../codeexample/ch02/begin/images/jump3.jpg">
+        <!-- <p>your discount is <span>5</span>%</p> -->
+    </li>
+    <li class="fl">
+        <img src="../../codeexample/ch02/begin/images/jump4.jpg">
+        <!-- <p>your discount is <span>5</span>%</p> -->
+    </li>
+</ul>
+<div id="result"></div>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script>
+$(document).ready(function(){
+    $('li').hover(
+        function(){$(this).addClass('on_hover');},
+        function(){$(this).removeClass('on_hover');}
+    );
+    $('li').click(checkDiscount);
+});
+function getRandom (num) {
+    // 0<=result<num
+    return Math.floor(Math.random()*num);
+}
+function decideDiscount () {
+    var randomNum = getRandom(4);
+    $('li').each(function(index, value){
+        if (randomNum == index) {
+            $(this).append('<span id="has_discount"></span>');
+            return false;
+        }
+    })
+}
+function checkDiscount () {
+
+    decideDiscount();
+
+    var discountStr;
+    if ($.contains(this, document.getElementById('has_discount'))) {
+        var num = getRandom(100);
+        discountStr = '<p>your Code: CODE'+ num +'%</p>';
+    } else {
+        discountStr = '<p>sorry no discount this time</p>';
+    }
+    $('#result').append(discountStr);
+
+    $('li').each(function(){
+        if ($.contains(this, document.getElementById('has_discount'))) {
+            $(this).addClass('discount');
+        } else {
+            $(this).addClass('no_discount');
+        }
+        $(this).unbind();
+    });
+}
+</script>
+</body>
+</html>
