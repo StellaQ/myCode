@@ -46,7 +46,6 @@ function cardStart () {
     $(this).toggle();
     $('#btnHit').toggle();
     $('#btnStick').toggle();
-    // $('#btnRestart').toggle();
 }
 function cardContinue () {
     hit();
@@ -54,10 +53,11 @@ function cardContinue () {
 }
 function cardStick () {
     $('#hdrResult').html('Stick!').addClass('win');
-    // $('#my_hand').empty();
+
     $('#btnHit').toggle();
     $('#btnStick').toggle();
     $('#btnRestart').toggle();
+
     used_cards = [];
 }
 function cardRestart () {
