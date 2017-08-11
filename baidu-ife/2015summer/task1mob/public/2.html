@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="
+    width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/2.css">
+</head>
+<body>
+<ul>
+    <li class="page page1"></li>
+    <li class="page page2"></li>
+    <li class="page page3"></li>
+    <li class="page page4"></li>
+</ul>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script>
+var startY,
+    endY,
+    index = 0,
+    length = $('.page').length;
+$(document).ready(function(){
+    $('.page').on('touchstart touchmove touchend', function(ev){
+        ev.preventDefault();
+        // ev.stopPropagation();
+        switch(ev.type) {
+            case 'touchstart':
+                startY = ev.originalEvent.targetTouches[0].clientY;
+                break;
+            case 'touchmove':
+                endY = ev.originalEvent.targetTouches[0].clientY;
+                break;
+            case 'touchend':
+                if (Math.abs(startY - endY) <= 40) {
+                    // console.log('不认为是滑动页面行为')
+                    return;
+                }
+                if (startY < endY) {
+                    // console.log('方向向下');
+                    // console.log(index);
+                    if (index == 0) { return }
+                    $('.page').eq(index).animate({top:'100%'}, '2000');
+                    $('.page').eq(index).prev().animate({top:'0'}, '1000');
+                    index--;
+                } else {
+                    // console.log('方向向上');
+                    // console.log(index);
+                    if (index == length-1) { return }
+                    $('.page').eq(index).animate({top:'-100%'}, '2000');
+                    $('.page').eq(index).next().animate({top:'0'}, '1000');
+                    index++;
+                }
+        }
+    })
+});
+
+</script>
+</body>
+</html>
