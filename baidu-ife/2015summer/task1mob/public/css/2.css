@@ -23,68 +23,7 @@ ul{
     transform: translate3d(0, 100%, 0);
     -webkit-transform: translate3d(0, 100%, 0);
 }
-/*.page1{
-    top: 0;
-}*/
 .page1{background-color: pink;}
 .page2{background-color: blue;}
 .page3{background-color: green;}
 .page4{background-color: yellow;}
-
-/*animation*/
-.currentToTop{
-    animation-name: currentToTop;
-    animation-duration: 2s;
-    animation-timing-function: ease;
-    animation-fill-mode: forwards;
-}
-@keyframes currentToTop{
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-100%);
-    }
-}
-.nextToCurrent{
-    animation-name: nextToCurrent;
-    animation-duration: 2s;
-    animation-timing-function: ease;
-    animation-delay: 2s;
-}
-@keyframes nextToCurrent{
-    0% {
-        transform: translateY(100%);
-    }
-    100% {
-        transform: translateY(0);
-    }
-}
-.currentToBottom{
-    animation-name: currentToBottom;
-    animation-duration: 2s;
-    animation-timing-function: ease;
-}
-@keyframes currentToBottom{
-    0% {
-        transform: translateY(0);
-    }
-    0% {
-        transform: translateY(100%);
-    }
-}
-.prevToCurrent{
-    animation-name: prevToCurrent;
-    animation-duration: 2s;
-    animation-timing-function: ease;
-}
-@keyframes prevToCurrent{
-    0% {
-        transform: translateY(-100%);
-    }
-    100% {
-        transform: translateY(0);
-    }
-}
-
-
