@@ -15,47 +15,79 @@
     <li class="page page3"></li>
     <li class="page page4"></li>
 </ul>
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script src="http://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
+<!-- <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script> -->
 <script>
 var startY,
     endY,
     index = 0,
     length = $('.page').length;
 $(document).ready(function(){
-    $('.page').on('touchstart touchmove touchend', function(ev){
+    // $('.page').on('touchstart touchmove touchend', function(ev){
+    // 1）之前引用jquery检测touchstart touchmove touchend来判断向上／下滑动，但会
+    // 引起滑动时上下两个页面有空白的情况，并且滑得越快空白越大
+    $('.page').on('swipeUp swipeDown', function(ev){
         ev.preventDefault();
         // ev.stopPropagation();
         switch(ev.type) {
-            case 'touchstart':
-                startY = ev.originalEvent.targetTouches[0].clientY;
-                break;
-            case 'touchmove':
-                endY = ev.originalEvent.targetTouches[0].clientY;
-                break;
-            case 'touchend':
-                if (Math.abs(startY - endY) <= 40) {
-                    // console.log('不认为是滑动页面行为')
-                    return;
-                }
-                if (startY < endY) {
-                    // console.log('方向向下');
-                    // console.log(index);
-                    if (index == 0) { return }
-                    $('.page').eq(index).animate({top:'100%'}, '2000');
-                    $('.page').eq(index).prev().animate({top:'0'}, '1000');
-                    index--;
-                } else {
-                    // console.log('方向向上');
-                    // console.log(index);
-                    if (index == length-1) { return }
-                    $('.page').eq(index).animate({top:'-100%'}, '2000');
-                    $('.page').eq(index).next().animate({top:'0'}, '1000');
-                    index++;
-                }
-        }
-    })
-});
+            // case 'touchstart':
+            //     startY = ev.originalEvent.targetTouches[0].clientY;
+            //     break;
+            // case 'touchmove':
+            //     endY = ev.originalEvent.targetTouches[0].clientY;
+            //     break;
+            // case 'touchend':
+            //     if (Math.abs(startY - endY) <= 40) {
+            //         // console.log('不认为是滑动页面行为')
+            //         return;
+            //     }
+            //     if (startY < endY) {
+            //         // console.log('方向向下');
+            //         // console.log(index);
+            //         if (index == 0) { return }
+            //         $('.page').eq(index).animate({top:'100%'}, '2000');
+            //         $('.page').eq(index).prev().animate({top:'0'}, '1000');
+            //         index--;
+            //     } else {
+            //         // console.log('方向向上');
+            //         // console.log(index);
+            //         if (index == length-1) { return }
+            //         $('.page').eq(index).animate({top:'-100%'}, '2000');
+            //         $('.page').eq(index).next().animate({top:'0'}, '1000');
+            //         index++;
+            //     }
 
+            // 2）引用zepto换成下面这种方式，仍然有微小的空白间隙
+            // 若$('.page').eq(index).animate({top:'100%'}, 1000);
+            // animate()加上时间参数，则会引起页面移动时边缘的抖动
+            // case 'swipeDown':
+            //     if (index == 0) { return };
+            //     $('.page').eq(index).animate({top:'100%'});
+            //     $('.page').eq(index).prev().animate({top:'0'});
+            //     index--;
+            //     break;
+            // case 'swipeUp':
+            //     if (index == length-1) { return };
+            //     $('.page').eq(index).animate({top:'-100%'});
+            //     $('.page').eq(index).next().animate({top:'0'});
+            //     index++;
+            //     break;
+            // 3) animate()相较于原生的transform:translate3d，会引起边缘抖动，后者平稳
+            case 'swipeDown':
+                var item = $(ev.target);
+                if (item.prev().length == 0) { return }
+                item.prev().css('-webkit-transform', 'scale(1)');
+                item.css('-webkit-transform', 'translate3d(0,100%,0)');
+                break;
+            case 'swipeUp':
+                var item = $(ev.target);
+                if (item.next().length == 0) { return }
+                item.css('-webkit-transform', 'translate3d(0,-100%,0)');
+                item.next().css('-webkit-transform', 'translate3d(0,0,0)');
+                break;
+        };
+    });
+});
 </script>
 </body>
 </html>
