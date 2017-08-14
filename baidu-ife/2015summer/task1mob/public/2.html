@@ -32,7 +32,7 @@ $(document).ready(function(){
     // $('.page').on('touchstart touchmove touchend', function(ev){
     // 1）之前引用jquery检测touchstart touchmove touchend来判断向上／下滑动，但会
     // 引起滑动时上下两个页面有空白的情况，并且滑得越快空白越大
-    // 且juqery可输出index, zepto内index一直为0???
+    // 且注意index与obj.eq(index)的不同输出
     $('.page').on('swipeUp swipeDown touchstart touchmove touchend', function(ev){
 
         ev.preventDefault();
