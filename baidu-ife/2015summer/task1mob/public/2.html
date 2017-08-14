@@ -20,16 +20,25 @@
 <script>
 var startY,
     endY,
+    percentage,
     index = 0,
     length = $('.page').length;
+
+var config ={
+    swipe: true
+};
+
 $(document).ready(function(){
     // $('.page').on('touchstart touchmove touchend', function(ev){
     // 1）之前引用jquery检测touchstart touchmove touchend来判断向上／下滑动，但会
     // 引起滑动时上下两个页面有空白的情况，并且滑得越快空白越大
-    $('.page').on('swipeUp swipeDown', function(ev){
+    // 且juqery可输出index, zepto内index一直为0???
+    $('.page').on('swipeUp swipeDown touchstart touchmove touchend', function(ev){
+
         ev.preventDefault();
-        // ev.stopPropagation();
+
         switch(ev.type) {
+            // 1）
             // case 'touchstart':
             //     startY = ev.originalEvent.targetTouches[0].clientY;
             //     break;
@@ -72,16 +81,73 @@ $(document).ready(function(){
             //     $('.page').eq(index).next().animate({top:'0'});
             //     index++;
             //     break;
+
+            // 4）增加tocuhmove过程中的动画
+            case 'touchstart':
+                // console.log('touchstart');
+                if (config.swipe) {return}
+
+                startY = ev.touches[0].clientY;  //zepto中clientY的获取
+                break;
+            case 'touchmove':
+                // console.log('touchmove');
+                if (config.swipe) {return}
+
+                endY = ev.touches[0].clientY;
+                percentage = (startY - endY) / window.screen.height;
+
+                var item = $(ev.target);
+                if (startY < endY) {
+                    if (item.prev().length == 0) { return }
+
+                    var scale = -(0.8 * percentage);
+                    item.css('-webkit-transform', 'translate3d(0,' + scale * 100 + '%,0)');
+                    item.prev().css('-webkit-transform', 'translate3d(0,' + (scale * 100 - 100) + '%,0)');
+                } else {
+                    if (item.next().length == 0) { return }
+
+                    var scale = 1 - 0.8 * percentage;
+                    item.css('-webkit-transform', 'translate3d(0,' + (scale * 100 - 100) + '%,0)');
+                    item.next().css('-webkit-transform', 'translate3d(0,' + scale * 100 + '%,0)');
+                };
+                break;
+            case 'touchend':
+                // console.log('touchend');
+                if (config.swipe) {return}
+
+                var item = $(ev.target);
+                if (startY < endY) {
+                    if (item.prev().length == 0) { return }
+
+                    item.prev().css('-webkit-transform', 'translate3d(0, 0, 0)');
+                    item.css('-webkit-transform', 'translate3d(0,100%,0)');
+                } else {
+                    if (item.next().length == 0) { return }
+
+                    item.css('-webkit-transform', 'translate3d(0,-100%,0)');
+                    item.next().css('-webkit-transform', 'translate3d(0,0,0)');
+                };
+                break;
+
             // 3) animate()相较于原生的transform:translate3d，会引起边缘抖动，后者平稳
             case 'swipeDown':
+                // console.log('swipeDown');
+                if (!config.swipe) {return}
+
                 var item = $(ev.target);
                 if (item.prev().length == 0) { return }
-                item.prev().css('-webkit-transform', 'scale(1)');
+
+                item.prev().css('-webkit-transform', 'translate3d(0, 0, 0)');
                 item.css('-webkit-transform', 'translate3d(0,100%,0)');
                 break;
             case 'swipeUp':
+                // console.log('swipeUp');
+                if (!config.swipe) {return}
+
                 var item = $(ev.target);
                 if (item.next().length == 0) { return }
+
+                // item.css('-webkit-transform', 'scale(0.8)');
                 item.css('-webkit-transform', 'translate3d(0,-100%,0)');
                 item.next().css('-webkit-transform', 'translate3d(0,0,0)');
                 break;
