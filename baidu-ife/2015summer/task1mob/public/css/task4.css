@@ -45,7 +45,7 @@ body,
         transform: translateX(100%);
     }
     100%{
-        transform: translateX(10px);
+        transform: translateX(15px);
     }
 }
 .swipeRight{
@@ -56,7 +56,7 @@ body,
 }
 @keyframes swipeRight{
     0%{
-        transform: translateX(10px);
+        transform: translateX(15px);
     }
     100%{
         transform: translateX(100%);

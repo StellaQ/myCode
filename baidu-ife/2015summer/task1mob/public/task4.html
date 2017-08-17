@@ -12,55 +12,63 @@
 <ul class="container">
     <li class="page page1">
         <ul>
+            <!-- <li>任务分类1</li>
             <li>任务分类1</li>
-            <li>任务分类1</li>
-            <li>任务分类1</li>
+            <li>任务分类1</li> -->
         </ul>
     </li>
     <li class="page page2">
         <ul>
-            <li>任务1</li>
+            <!-- <li>任务1</li>
             <li>任务2</li>
-            <li>任务3</li>
+            <li>任务3</li> -->
         </ul>
     </li>
     <li class="page page3">
-        <p>While Loaders only execute transforms on a per-file basis, plugins are most commonly used to perform actions and custom functionality on "compilations" or "chunks" of your bundled modules (and so much more!). The webpack Plugin system is extremely powerful and customizable.</p>
+        <p><!-- While Loaders only execute transforms on a per-file basis, plugins are most commonly used to perform actions and custom functionality on "compilations" or "chunks" of your bundled modules (and so much more!). The webpack Plugin system is extremely powerful and customizable. --></p>
     </li>
 </ul>
 
 <script src="https://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
 <script>
 $(document).ready(function(){
-    // initPage1();
-    $('.page li').on('click', function(ev){
-        ev.stopPropagation();
+    initPage1();
+    $('.page ul').delegate('li', 'tap', function(ev){
+        console.log('li tap');
         slideToNext ($(this).parents('li'));
+
+        if ($(this).parents('li').hasClass('page1')) {
+            initPage2($(this).index());
+        } else {
+            initPage3($(this).index());
+        };
+
+        ev.stopPropagation();
     });
-    // $('.page1 li').each(function(index){
-    //     $(this).on('click', function(){
-    //         initPage2(index);
-    //     });
+    // $('.page ul').delegate('li', 'touchstart', function(ev){
+    //     ev.stopPropagation();
     // });
-    // $('.page2 li').each(function(index){
-    //     $(this).on('click', function(){
-    //         console.log('dedede')
-    //         // ev.stopPropagation();
-    //         // initPage3(index);
-    //     });
-    // });
-    $('.page').on('click swipeLeft swipeRight', function(ev){
-        console.log('maopao');
+    $('.page').on('tap swipeLeft swipeRight touchstart touchmove', function(ev){
         ev.preventDefault();
         switch(ev.type){
-            case 'click':
+            case 'tap':
+                console.log('page tap');
                 slideToPrev ($(this).next());
                 break;
             // case 'swipeLeft':
             //     slideToNext ($(this));
             //     break;
             case 'swipeRight':
+                console.log('page swipeRight');
                 slideToPrev ($(this));
+                break;
+            case 'touchstart':
+                options.startX = ev.touches[0].clientX;
+                console.log(options.startX);
+                break;
+            case 'touchmove':
+                options.endX = ev.touches[0].clientX;
+                console.log(options.endX);
                 break;
         }
     })
@@ -84,29 +92,34 @@ var options = {
             {title: '任务分类3-2', content: '任务分类3-2 kddldd'},
             {title: '任务分类3-3', content: '任务分类3-3 kddldd'}
             ]
+        },
+        {h1: '任务分类4', h2: [
+            {title: '任务分类4-1', content: '任务分类4-1 kddldd'},
+            {title: '任务分类4-2', content: '任务分类4-2 kddldd'},
+            {title: '任务分类4-3', content: '任务分类4-3 kddldd'}
+            ]
         }
     ],
-    indexH2: 0
+    indexH2: 0,
+    startX: null,
+    endX: null
 };
 function initPage1(){
     var str = '';
     for (var i = 0; i < options.data.length; i++) {
         str += '<li>'+ options.data[i].h1 +'</li>';
     };
-    str = '<ul>'+ str +'</ul>';
-    $('.page1').html(str);
+    $('.page1 ul').html(str);
 };
 function initPage2(index){
     options.indexH2 = index;
 
     var str = '';
     var arr = options.data[index].h2;
-    // console.log(arr);
     for (var i = 0; i < arr.length; i++) {
         str += '<li>'+ arr[i].title +'</li>';
     };
-    str = '<ul>'+ str +'</ul>';
-    $('.page2').html(str);
+    $('.page2 ul').html(str);
 };
 function initPage3(index){
     var str = options.data[options.indexH2].h2[index].content;
@@ -126,7 +139,7 @@ function slideToPrev (obj) {
 
     obj.prev().children().show();
     if (obj.prev().prev().length > 0) {
-        obj.prev().css('transform', 'translate3d(10px,0,0)');
+        obj.prev().css('transform', 'translate3d(15px,0,0)');
     };
     obj.removeClass('swipeLeft').addClass('swipeRight');
 };
