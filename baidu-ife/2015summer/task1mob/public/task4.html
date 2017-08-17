@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="
+    width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/task4.css">
+</head>
+<body>
+<ul class="container">
+    <li class="page page1">
+        <ul>
+            <li>任务分类1</li>
+            <li>任务分类1</li>
+            <li>任务分类1</li>
+        </ul>
+    </li>
+    <li class="page page2">
+        <ul>
+            <li>任务1</li>
+            <li>任务2</li>
+            <li>任务3</li>
+        </ul>
+    </li>
+    <li class="page page3">
+        <p>While Loaders only execute transforms on a per-file basis, plugins are most commonly used to perform actions and custom functionality on "compilations" or "chunks" of your bundled modules (and so much more!). The webpack Plugin system is extremely powerful and customizable.</p>
+    </li>
+</ul>
+
+<script src="https://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
+<script>
+$(document).ready(function(){
+    // initPage1();
+    $('.page li').on('click', function(ev){
+        ev.stopPropagation();
+        slideToNext ($(this).parents('li'));
+    });
+    // $('.page1 li').each(function(index){
+    //     $(this).on('click', function(){
+    //         initPage2(index);
+    //     });
+    // });
+    // $('.page2 li').each(function(index){
+    //     $(this).on('click', function(){
+    //         console.log('dedede')
+    //         // ev.stopPropagation();
+    //         // initPage3(index);
+    //     });
+    // });
+    $('.page').on('click swipeLeft swipeRight', function(ev){
+        console.log('maopao');
+        ev.preventDefault();
+        switch(ev.type){
+            case 'click':
+                slideToPrev ($(this).next());
+                break;
+            // case 'swipeLeft':
+            //     slideToNext ($(this));
+            //     break;
+            case 'swipeRight':
+                slideToPrev ($(this));
+                break;
+        }
+    })
+});
+var options = {
+    data: [
+        {h1: '任务分类1', h2: [
+            {title: '任务分类1-1', content: '任务分类1-1 kddldd'},
+            {title: '任务分类1-2', content: '任务分类1-2 kddldd'},
+            {title: '任务分类1-3', content: '任务分类1-3 kddldd'}
+            ]
+        },
+        {h1: '任务分类2', h2: [
+            {title: '任务分类2-1', content: '任务分类2-1 kddldd'},
+            {title: '任务分类2-2', content: '任务分类2-2 kddldd'},
+            {title: '任务分类2-3', content: '任务分类2-3 kddldd'}
+            ]
+        },
+        {h1: '任务分类3', h2: [
+            {title: '任务分类3-1', content: '任务分类3-1 kddldd'},
+            {title: '任务分类3-2', content: '任务分类3-2 kddldd'},
+            {title: '任务分类3-3', content: '任务分类3-3 kddldd'}
+            ]
+        }
+    ],
+    indexH2: 0
+};
+function initPage1(){
+    var str = '';
+    for (var i = 0; i < options.data.length; i++) {
+        str += '<li>'+ options.data[i].h1 +'</li>';
+    };
+    str = '<ul>'+ str +'</ul>';
+    $('.page1').html(str);
+};
+function initPage2(index){
+    options.indexH2 = index;
+
+    var str = '';
+    var arr = options.data[index].h2;
+    // console.log(arr);
+    for (var i = 0; i < arr.length; i++) {
+        str += '<li>'+ arr[i].title +'</li>';
+    };
+    str = '<ul>'+ str +'</ul>';
+    $('.page2').html(str);
+};
+function initPage3(index){
+    var str = options.data[options.indexH2].h2[index].content;
+    $('.page3 p').html(str);
+};
+function slideToNext (obj) {
+    if (obj.next().length == 0) {return}
+
+    obj.removeClass('swipeLeft');
+    obj.children().hide();
+    obj.css('transform', 'translate3d(0,0,0)');
+
+    obj.next().removeClass('swipeRight').addClass('swipeLeft');
+};
+function slideToPrev (obj) {
+    if (obj.prev().length == 0) {return}
+
+    obj.prev().children().show();
+    if (obj.prev().prev().length > 0) {
+        obj.prev().css('transform', 'translate3d(10px,0,0)');
+    };
+    obj.removeClass('swipeLeft').addClass('swipeRight');
+};
+</script>
+</body>
+</html>
