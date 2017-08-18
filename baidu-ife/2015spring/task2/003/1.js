@@ -12,6 +12,8 @@ window.addEventListener('focus', function(){
     intervalId = setInterval(function(){ imageLoop(config.forward, config.loop) }, config.time);
 }, false);
 //使用setTimeout()递归是否性能更高？？？
+//有bug
+//用jquery重写
 
 // 页面离开时停止间歇调用,解决离开页面一段时间后再返回页面动画出错的bug
 window.addEventListener('blur', function(){

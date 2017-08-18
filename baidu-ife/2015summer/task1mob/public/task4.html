@@ -34,7 +34,7 @@
 $(document).ready(function(){
     initPage1();
     $('.page ul').delegate('li', 'tap', function(ev){
-        console.log('li tap');
+        // console.log('li tap');
         slideToNext ($(this).parents('li'));
 
         if ($(this).parents('li').hasClass('page1')) {
@@ -45,31 +45,33 @@ $(document).ready(function(){
 
         ev.stopPropagation();
     });
-    // $('.page ul').delegate('li', 'touchstart', function(ev){
-    //     ev.stopPropagation();
-    // });
     $('.page').on('tap swipeLeft swipeRight touchstart touchmove', function(ev){
         ev.preventDefault();
         switch(ev.type){
             case 'tap':
-                console.log('page tap');
+                // console.log('page tap');
                 slideToPrev ($(this).next());
                 break;
             // case 'swipeLeft':
             //     slideToNext ($(this));
             //     break;
             case 'swipeRight':
-                console.log('page swipeRight');
+                // console.log('page swipeRight');
                 slideToPrev ($(this));
                 break;
-            case 'touchstart':
-                options.startX = ev.touches[0].clientX;
-                console.log(options.startX);
-                break;
-            case 'touchmove':
-                options.endX = ev.touches[0].clientX;
-                console.log(options.endX);
-                break;
+            // 还需实现随着touchmove,page也对应移动
+            // case 'touchstart':
+            //     options.startX = ev.touches[0].clientX;
+            //     break;
+            // case 'touchmove':
+            //     options.endX = ev.touches[0].clientX;
+            //     var x = options.endX - options.startX;
+            //     // console.log(x);
+            //     if (x > 0 && $(this).prev().length > 0) {
+            //         // console.log('translate3d('+ x +'px,0,0)');
+            //         $(this).css('transform', 'translate3d('+ x +'px,0,0)');
+            //     }
+            //     break;
         }
     })
 });
