@@ -1,0 +1,52 @@
+html,
+body{
+    width: 100%;
+    height: 100%;
+}
+.container{
+}
+.banner{
+    height: 50px;
+    border-bottom: 1px solid #c5bdbd;
+    background-color: rgb(246,246,246);
+    line-height: 50px;
+    color: #999;
+    text-align: center;
+    position: relative;
+}
+.button{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 30px;
+    padding: 0 10px;
+    border: unset;
+    border-radius: 10px;
+    background-color: rgb(123,200,130);
+    color: #fff;
+}
+.list{
+    padding: 0 5px;
+}
+.list li{
+    padding: 10px 5px;
+    border-bottom: 1px solid #c5bdbd;
+    margin-bottom: 10px;
+}
+.item{
+    width: 40px;
+    margin-right: 40px;
+    line-height: 24px;
+    color: #999;
+    text-align: center;
+}
+[class^="icon-"], [class*=" icon-"]{
+    font-size: 40px;
+}
+.icon-coin-yen{color: rgb(131,214,169);}
+.icon-t-shirt{color: rgb(238,140,79);}
+.icon-mug{color: rgb(251,115,117);}
+.icon-shop{color: rgb(178,155,133);}
+.icon-airplane{color: rgb(85,145,191);}
+.icon-credit-card{color: rgb(207,68,60);}
+.icon-flickr{color: rgb(252,184,11);}
