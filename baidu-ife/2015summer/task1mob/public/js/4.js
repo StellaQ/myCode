@@ -1,4 +1,14 @@
 $(document).ready(function(){
+    $('.cal ul li').on('touchstart, touchend', function(ev){
+        switch (ev.type) {
+            case 'touchstart' :
+                console.log('touchstart');
+                break;
+            case 'touchend' :
+                console.log('touchend');
+                break;
+        }
+    });
     $('.item').on('tap', function(){
         if ($('.calContainer').css('display') == 'none') {
             $('.calContainer').show();
@@ -23,6 +33,7 @@ $(document).ready(function(){
     });
 
     $('.btnNum').on('tap', function(){
+        console.log('tap');
         calCurrent($(this).text());
     });
     $('.btnDot').on('tap', function(){
