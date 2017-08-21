@@ -33,6 +33,9 @@ body{
     border-bottom: 1px solid #c5bdbd;
     margin-bottom: 10px;
 }
+.list li:last-child{
+    margin-bottom: 0;
+}
 .item{
     width: 40px;
     margin-right: 40px;
@@ -50,3 +53,41 @@ body{
 .icon-airplane{color: rgb(85,145,191);}
 .icon-credit-card{color: rgb(207,68,60);}
 .icon-flickr{color: rgb(252,184,11);}
+.calContainer{
+    display: none;
+}
+.calBox{
+    background-color: rgb(234,234,234);
+    color: #999;
+    font-weight: bold;
+}
+.calBox .output{
+    padding: 10px 10px;
+    border-bottom: 1px solid #c5bdbd;
+}
+.calBox .output .type{
+    margin-left: 10px;
+    line-height: 40px;
+}
+.calBox .output .total{
+    line-height: 40px;
+    letter-spacing: 1px;
+}
+.cal ul{
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid #c5bdbd;
+}
+.cal ul li{
+    box-sizing: border-box;
+    width: 25%;
+    border-right: 1px solid #c5bdbd;
+    line-height: 40px;
+    text-align: center;
+}
+.cal ul li:last-child{
+    border-right: unset;
+}
+.icon-cancel-circle{
+    font-size: 18px;
+}

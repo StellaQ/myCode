@@ -25,3 +25,6 @@ a{
 .fr{
     float: right;
 }
+button:focus{
+    outline: unset;
+}
