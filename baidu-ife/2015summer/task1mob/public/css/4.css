@@ -88,6 +88,9 @@ body{
 .cal ul li:last-child{
     border-right: unset;
 }
+.cal ul li.btnActive{
+    background-color: #f5f5f5;
+}
 .icon-cancel-circle{
     font-size: 18px;
 }

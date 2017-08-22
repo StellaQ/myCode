@@ -1,14 +1,4 @@
 $(document).ready(function(){
-    $('.cal ul li').on('touchstart, touchend', function(ev){
-        switch (ev.type) {
-            case 'touchstart' :
-                console.log('touchstart');
-                break;
-            case 'touchend' :
-                console.log('touchend');
-                break;
-        }
-    });
     $('.item').on('tap', function(){
         if ($('.calContainer').css('display') == 'none') {
             $('.calContainer').show();
@@ -20,6 +10,7 @@ $(document).ready(function(){
 
         $('.btnReset').trigger('tap');
     });
+
     $('.btnCancel').on('tap', function(){
         $('.calContainer').hide();
 
@@ -33,7 +24,6 @@ $(document).ready(function(){
     });
 
     $('.btnNum').on('tap', function(){
-        console.log('tap');
         calCurrent($(this).text());
     });
     $('.btnDot').on('tap', function(){
@@ -50,8 +40,22 @@ $(document).ready(function(){
     });
     $('.btnEqual').on('tap', function(){
         is_end = true;
+        console.log(prev_arr);
+        console.log(current_num);
         getTotal(prev_arr, current_num);
-    })
+    });
+    // 键盘输入键 增强交互
+    $('.cal ul li').on('touchstart touchend', function(ev){
+        ev.preventDefault();
+        switch (ev.type) {
+            case 'touchstart' :
+                $(this).addClass('btnActive');
+                break;
+            case 'touchend' :
+                $(this).removeClass('btnActive');
+                break;
+        }
+    });
 });
 
 var current_num = 0,
