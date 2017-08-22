@@ -3,10 +3,10 @@ $(document).ready(function(){
         if ($('.calContainer').css('display') == 'none') {
             $('.calContainer').show();
         };
-        var className = $(this).children().eq(0).attr('class');
-        var text = $(this).children().eq(1).text();
-        $('.output').children().eq(0).attr('class', className + ' fl');
-        $('.output .type').html(text);
+        name = $(this).children().eq(1).text();
+        iconClass = $(this).children().eq(0).attr('class');
+        $('.output').children().eq(0).attr('class', iconClass + ' fl');
+        $('.output .type').html(name);
 
         $('.btnReset').trigger('tap');
     });
@@ -40,12 +40,10 @@ $(document).ready(function(){
     });
     $('.btnEqual').on('tap', function(){
         is_end = true;
-        console.log(prev_arr);
-        console.log(current_num);
         getTotal(prev_arr, current_num);
     });
     // 键盘输入键 增强交互
-    $('.cal ul li').on('touchstart touchend', function(ev){
+    $('.cal ul li').on('touchstart touchmove touchend', function(ev){
         ev.preventDefault();
         switch (ev.type) {
             case 'touchstart' :
@@ -56,12 +54,39 @@ $(document).ready(function(){
                 break;
         }
     });
+
+    $('.publish').on('tap', function(){
+        $('.btnEqual').trigger('tap');
+        var timeStr = getTimeStr();
+
+        if (total == 0) { return; }
+
+        var obj = {
+            name: name,
+            icon: iconClass,
+            total: total,
+            time: timeStr
+        };
+        var list = JSON.parse(storage.getItem('list')) ?
+        JSON.parse(storage.getItem('list')) : [];
+        // console.log(list);
+        list.push(obj);
+        // console.log('^^^');
+        // console.log(list);
+        storage.setItem('list', JSON.stringify(list));
+    });
 });
 
 var current_num = 0,
     prev_arr = [],
     current_dot = false,
-    is_end = false;
+    is_end = false,
+    name = '',
+    iconClass = '',
+    total = 0;
+
+var storage = getLocalStorage();
+// storage.clear();
 
 function calCurrent (num) {
     // 上一次=计算总数后再按btnNum，开始重新计数
@@ -90,9 +115,13 @@ function calCurrent (num) {
 }
 function getTotal (arr, num){
     // 考虑到按下1个数字后直接算总数的情况
-    if (arr.length == 0) { return $('.output .total').html('¥' + num); };
+    if (arr.length == 0) {
+        total = num;
+        $('.output .total').html('¥' + num);
+        return;
+    };
 
-    var total = 0;
+    total = 0;
     for (var i = 0; i < arr.length; i++) {
         if (i == 0) {
             total += arr[i].num;
@@ -111,4 +140,20 @@ function getTotal (arr, num){
     };
     // console.log(total);
     $('.output .total').html('¥' + total);
+}
+function getTimeStr () {
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    return day + '/' + month + '/' + year;
+}
+function getLocalStorage () {
+    if (typeof localStorage == 'object') {
+        return localStorage;
+    } else if (typeof globalStorage == 'object') {
+        return globalStorage[location.host];
+    } else {
+        throw new Error('Local storage not available.');
+    }
 }
