@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?nvn7b3');
-  src:  url('fonts/icomoon.eot?nvn7b3#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?nvn7b3') format('truetype'),
-    url('fonts/icomoon.woff?nvn7b3') format('woff'),
-    url('fonts/icomoon.svg?nvn7b3#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?t428gp');
+  src:  url('fonts/icomoon.eot?t428gp#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?t428gp') format('truetype'),
+    url('fonts/icomoon.woff?t428gp') format('woff'),
+    url('fonts/icomoon.svg?t428gp#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -30,6 +30,9 @@
 .icon-shop:before {
   content: "\e901";
 }
+.icon-pencil:before {
+  content: "\e905";
+}
 .icon-coin-yen:before {
   content: "\e93e";
 }
@@ -38,6 +41,9 @@
 }
 .icon-mug:before {
   content: "\e9a2";
+}
+.icon-bin:before {
+  content: "\e9ac";
 }
 .icon-airplane:before {
   content: "\e9af";
