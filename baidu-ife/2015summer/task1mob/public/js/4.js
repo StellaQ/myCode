@@ -110,8 +110,8 @@ function calCurrent (num) {
     } else{
         current_dot = false;
 
-        var arr = (current_num + '.' + num).split('.');
         // 防止类似1.2.2格式出现
+        var arr = (current_num + '.' + num).split('.');
         if (arr.length > 2) { return };
 
         current_num = Number(current_num + '.' + num);
