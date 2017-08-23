@@ -55,6 +55,9 @@ $(document).ready(function(){
         }
     });
 
+    var id = JSON.parse(storage.getItem('id'))? JSON.parse(storage.getItem('id')) : 0;
+    // console.log(id);
+
     $('.publish').on('tap', function(){
         $('.btnEqual').trigger('tap');
         var timeStr = getTimeStr();
@@ -65,7 +68,8 @@ $(document).ready(function(){
             name: name,
             icon: iconClass,
             total: total,
-            time: timeStr
+            time: timeStr,
+            id: id++
         };
         var list = JSON.parse(storage.getItem('list')) ?
         JSON.parse(storage.getItem('list')) : [];
@@ -74,6 +78,8 @@ $(document).ready(function(){
         // console.log('^^^');
         // console.log(list);
         storage.setItem('list', JSON.stringify(list));
+        // console.log(id);
+        storage.setItem('id', JSON.stringify(id));
     });
 });
 

@@ -19,7 +19,20 @@ $(document).ready(function(){
         }
     });
     $('.menu .icon-bin').on('tap', function(){
-        console.log('delete');
+        var id = $(this).parent().prev().children('.type').attr('dataset').id;
+        var index = -1;
+        for (var i = 0; i < list.length; i++) {
+            if (list[i].id == id) {
+                index = i;
+                break;
+            };
+        };
+        // console.log(index);
+        // console.log(list.length);
+        list.splice(index, 1);
+        // console.log(list.length);
+        storage.setItem('list', JSON.stringify(list));
+        $(this).parent().parent().remove();
     });
     $('.menu .icon-pencil').on('tap', function(){
         console.log('edit');
@@ -41,7 +54,7 @@ function render (arr) {
         var income = arr[i].name == '收入' ? ' income' : '';
         var add = arr[i].name == '收入' ? '+' : '-';
         str += '<li class="clearfix"><div class="item"><span class="fl '+ arr[i].icon +
-        '"></span><span class="fl type">'+ arr[i].name +'</span>'+'<p class="fl num'+ income +'">'
+        '"></span><span class="fl type" data-id="' + arr[i].id + '">'+ arr[i].name +'</span>'+'<p class="fl num'+ income +'">'
         + add + arr[i].total + '</p><time class="fr">'+ arr[i].time +'</time></div><div class="menu clearfix">'+
         '<span class="fr icon-bin"></span><span class="fr icon-pencil"></span></div></li>';
     };
