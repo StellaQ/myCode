@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ajax 原生实现</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="
+    width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+</head>
+<body>
+<div>
+    <button>send request</button>
+</div>
+<!-- ajax jquery 实现 -->
+<script>
+function ajax(url, options) {
+    var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            options.onsuccess(xhr.responseText, xhr);
+        }
+        else {
+            // options.onfail(xhr.responseText, xhr);
+        };
+    };
+
+    var type = options.type ? options.type.toUpperCase() : 'GET';
+    var data = options.data ? options.data : {};
+    var params = '';
+    for (key in data) {
+        params += encodeURIComponent(key) + '=' + encodeURIComponent(data.key) + '&';
+    };
+    params = params.slice(0, -1);
+
+    if (type == 'GET') {
+        url += '?' + params;
+        xhr.open(type, url, true);
+        xhr.send(null);
+    } else if (type == 'POST') {
+        xhr.open(type, url, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send(params);
+    };
+}
+function callback (text, xhr) {
+    console.log(text);
+}
+ajax('/api/getData', {type:'GET',onsuccess(text, xhr){callback(text, xhr)}});
+</script>
+<!-- <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script>
+$(document).ready(function(){
+    $('button').click(function(){
+        $.ajax({
+            url: '/api/getData',
+            type: 'GET'
+        }).done(function(data){
+            callback(data);
+        });
+    });
+});
+function callback(data){
+    console.log(data);
+};
+</script> -->
+</body>
+</html>

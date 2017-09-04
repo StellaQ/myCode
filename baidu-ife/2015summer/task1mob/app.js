@@ -32,6 +32,14 @@ app.get('/', function(req, res){
     res.send('Hello Express');
 });
 
+// 为前端页面ajax请求返回数据
+app.get('/api/getData', function (req, res){
+    var data = {
+        note: 'yes i got your request'
+    };
+    res.send(data);
+});
+
 app.listen(3000, function(){
     console.log('Example app listening on port 3000! http://localhost:3000/');
 });
